@@ -6,6 +6,7 @@ import { User } from '../../models/User';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
+
 export class UsersComponent implements OnInit {
   users: User[];
   showExtended: boolean = true;
@@ -16,62 +17,55 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     // setTimeout(() => {
-      this.users = [
-        {
-          firstName: 'Artha',
-          lastName: 'Potdar',
-          age: 19,
-          address: {
-              flat: 403,
-              building: 'Simran Sunshine',
-              area: 'Nipaniya',
-              city: 'Indore',
-              state: 'MP'
-          },
-          image: "http://lorempixel.com/600/600/people/3"
+    this.users = [
+      {
+        firstName: 'Artha',
+        lastName: 'Potdar',
+        age: 19,
+        address: {
+          flat: 403,
+          building: 'Simran Sunshine',
+          area: 'Nipaniya',
+          city: 'Indore',
+          state: 'MP'
         },
-        {
-          firstName: 'Anushka',
-          lastName: 'Nagar',
-          age: 20,
-          address: {
-              flat: 30,
-              building: 'Grasim Staff Colony',
-              area: 'Birlagram',
-              city: 'Nagda',
-              state: 'MP'
-          },
-          image: "http://lorempixel.com/600/600/people/2"
+        isActive: true,
+        registered: new Date("08/31/2001 08:19:00")
+      },
+      {
+        firstName: 'Anushka',
+        lastName: 'Nagar',
+        age: 20,
+        address: {
+          flat: 30,
+          building: 'Grasim Staff Colony',
+          area: 'Birlagram',
+          city: 'Nagda',
+          state: 'MP'
         },
-        {
-          firstName: 'Giraj',
-          lastName: 'Neema',
-          age: 21,
-          address: {
-              flat: 101,
-              building: 'Moonlight View',
-              area: 'Malganj',
-              city: 'Indore',
-              state: 'MP'
-          },
-          image: "http://lorempixel.com/600/600/people/1"
-        }
-      ];
+        isActive: false,
+        registered: new Date("06/13/2001 12:30:00")
+      },
+      {
+        firstName: 'Giraj',
+        lastName: 'Neema',
+        age: 21,
+        address: {
+          flat: 101,
+          building: 'Moonlight View',
+          area: 'Malganj',
+          city: 'Indore',
+          state: 'MP'
+        },
+        isActive: true,
+        registered: new Date("09/12/2000 16:50:00")
+      }
+    ];
 
-      this.loaded = true;
-    
-    // 2000);
-
-    // this.showExtended = false;
-
-    // this.addUser({
-    //   firstName: 'Deepanshi',
-    //   lastName: 'Joshi'
-    // });
+    this.loaded = true;
   }
 
   addUser(user: User) {
     this.users.push(user);
   }
-
 }

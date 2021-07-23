@@ -10,5 +10,6 @@ export interface User {
         state?: string
     },
     isActive?: boolean,
-    registered?: any
+    registered?: any,
+    hide?: boolean
 }

@@ -8,5 +8,6 @@ export interface User {
         area?: string,
         city?: string,
         state?: string
-    }
+    },
+    image?: string
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../models/User';
 
 @Component({
@@ -8,11 +8,17 @@ import { User } from '../../models/User';
 })
 
 export class UsersComponent implements OnInit {
+  user: User = {
+    firstName: '',
+    lastName: '',
+    email: ''
+  };
   users: User[];
   showExtended: boolean = true;
   loaded: boolean = false;
-  enableAdd: boolean = true;
+  enableAdd: boolean = false;
   showUserForm: boolean = false;
+  @ViewChild('userForm') form: any;
 
   constructor() { }
 
@@ -22,14 +28,7 @@ export class UsersComponent implements OnInit {
       {
         firstName: 'Artha',
         lastName: 'Potdar',
-        age: 19,
-        address: {
-          flat: 403,
-          building: 'Simran Sunshine',
-          area: 'Nipaniya',
-          city: 'Indore',
-          state: 'MP'
-        },
+        email: 'artha@gmail.com',
         isActive: true,
         registered: new Date("08/31/2001 08:19:00"),
         hide: true
@@ -37,14 +36,7 @@ export class UsersComponent implements OnInit {
       {
         firstName: 'Anushka',
         lastName: 'Nagar',
-        age: 20,
-        address: {
-          flat: 30,
-          building: 'Grasim Staff Colony',
-          area: 'Birlagram',
-          city: 'Nagda',
-          state: 'MP'
-        },
+        email: 'nagarutt@yahoo.com',
         isActive: false,
         registered: new Date("06/13/2001 12:30:00"),
         hide: true
@@ -52,14 +44,7 @@ export class UsersComponent implements OnInit {
       {
         firstName: 'Giraj',
         lastName: 'Neema',
-        age: 21,
-        address: {
-          flat: 101,
-          building: 'Moonlight View',
-          area: 'Malganj',
-          city: 'Indore',
-          state: 'MP'
-        },
+        email: 'ganjraj@rediffmail.com',
         isActive: true,
         registered: new Date("09/12/2000 16:50:00"),
         hide: true
@@ -69,13 +54,28 @@ export class UsersComponent implements OnInit {
     this.loaded = true;
   }
 
-  addUser(user: User) {
-    this.users.push(user);
-  }
+  // addUser() {
+  //   this.user.isActive = true;
+  //   this.user.registered = new Date();
 
-  onSubmit(e: any) {
-    console.log(123);
+  //   this.users.unshift(this.user);
+  //   this.user = {
+  //     firstName: '',
+  //     lastName: '',
+  //     email: ''
+  //   }
+  // }
 
-    e.preventDefault();
+  onSubmit({value, valid}: {value: User, valid: boolean}) {
+    if (!valid) {
+      console.log('Invalid form');
+    } else {
+      value.isActive = true;
+      value.registered = new Date();
+      value.hide = true;
+
+      this.users.unshift(value);
+      this.form.reset();
+    }
   }
 }
